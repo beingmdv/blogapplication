@@ -1,0 +1,22 @@
+{
+  // === GitHub Copilot Settings for this workspace ===
+  "github.copilot.enable": {
+    "*": true            // enable Copilot for all languages in this workspace
+  },
+  "github.copilot.inlineSuggest.enable": true,           // enable inline ghost text
+  "github.copilot.editor.enableAutoCompletions": true,   // enable full line auto-completion
+  "github.copilot.editor.enableCodeCompletions": true,   // ensures code completions
+  "github.copilot.suggestion.display": "inline",         // show inline suggestions
+  "editor.inlineSuggest.enabled": true,                  // VS Code inline suggestion engine
+  "github.copilot.editor.acceptSuggestionOnEnter": "on", // press Enter to accept suggestion
+
+  // === Optional usability tweaks for smoother coding ===
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.suggest.preview": true,
+  "editor.inlineSuggest.suppressSuggestions": false,
+  "editor.suggest.snippetsPreventQuickSuggestions": false
+}
