@@ -14,7 +14,7 @@ export default function Loginpage() {
 
   async function login(ev) {
     ev.preventDefault();
-    const response = await fetch('http://localhost:4000/login', {
+    const response = await fetch('http://127.0.0.1:4000/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: { 'Content-type': 'application/json' },
@@ -44,6 +44,7 @@ export default function Loginpage() {
         value={username}
         onChange={ev => setUsername(ev.target.value)}
       />
+      
       <input
         type="password"
         placeholder="password"

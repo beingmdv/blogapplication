@@ -1,15 +1,14 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { UserContext } from   "./UserContext";
+import { UserContext } from   "./Usercontext";
 
 export default function Header() {
   const {setUserInfo,userInfo} = useContext(UserContext);
 
   useEffect(() => {
-    fetch('http://localhost:4000/profile', {
-      credentials: 'include',
-    })
+    fetch('http://127.0.0.1:4000/profile', { credentials: 'include' })
+
     .then(response => {
     
       response.json().then(userInfo => {
@@ -19,7 +18,7 @@ export default function Header() {
     })
   }, []);
   const logout = async () => {
-    await fetch('http://localhost:4000/logout', {
+    await fetch('http://127.0.0.1:4000/logout', {
       method: 'POST', 
       credentials: 'include',
     });
