@@ -1,50 +1,61 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { UserContext } from   "./Usercontext";
+import { UserContext } from "./Usercontext";
+const API = "http://127.0.0.1:4000";
 
 export default function Header() {
-  const {setUserInfo,userInfo} = useContext(UserContext);
+  const { setUserInfo, userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:4000/profile', { credentials: 'include' })
 
-    .then(response => {
-    
-      response.json().then(userInfo => {
-        setUserInfo(userInfo);
+
+    fetch(`${API}/profile`, 
+      { credentials: "include" })
+      .then(res => {
+
         
+        if (!res.ok) throw new Error("not authenticated");
+        return res.json();
       })
-    })
-  }, []);
+      .then(info => setUserInfo(info))
+      .catch(() => setUserInfo(null));
+  }, [setUserInfo]);
+
   const logout = async () => {
-    await fetch('http://127.0.0.1:4000/logout', {
-      method: 'POST', 
-      credentials: 'include',
-    });
-    setUserInfo(null);
-  }
+    try {
+      await fetch(`${API}/logout`, {
+        method: "POST",
+        credentials: "include"
+      });
+    } catch (e) {
+
+
+      console.error(e);
+    } finally {
+
+
+      setUserInfo(null);
+    }
+  };
 
   const username = userInfo?.username;
 
-
-  return(
+  return (
     <header>
-      <Link to="/" className='logo'>My blog</Link>
+      <Link to="/" className="logo">My blog</Link>
       <nav>
-        {username && ( 
+        {username ? (
           <>
             <Link to="/create">createnewpost</Link>
-            <a onClick={logout} href="">Logout</a>
+            <a href="" onClick={ev => { ev.preventDefault(); logout(); }}>Logout</a>
           </>
-        )}
-        {!username && ( 
+        ) : (
           <>
-            <Link to='/login'>Login</Link>
-            <Link to='/register'>Register</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </>
         )}
       </nav>
     </header>
-  )
+  );
 }

@@ -1,44 +1,48 @@
-import { useState } from "react"
+import { useState } from "react";
+const API = "http://127.0.0.1:4000";
 
 export default function Register() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     async function register(ev) {
         ev.preventDefault();
-        const response = await fetch('http://127.0.0.1:4000/register', {
-            method: 'POST',
-            body: JSON.stringify({username, password}),
-            headers:{'Content-type':'application/json'},
-        })
-        console.log(response)
-        if(response.status ===200){
-            alert('registration successful ');
-            
-        }else{
-            alert('Registration failed ')
+        try {
+            const res = await fetch(`${API}/register`, {
+                method: "POST",
+                body: JSON.stringify({ username, password }),
+                headers: { "Content-Type": "application/json" }
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) {
+                alert("registration successful");
+                setUsername("");
+                setPassword("");
+            } else {
+                alert(data?.error || "registration failed");
+            }
+        } catch (e) {
+            console.error(e);
+            alert("server hi nhi mila ");
         }
     }
 
     return (
-
-
         <form className="register" onSubmit={register}>
             <h1>Register</h1>
-
-            <input type="text"
-                placeholder="username"
+            <input type="text" placeholder="username"
                 value={username}
-                onChange={ev => setUsername(ev.target.value)} />
+                onChange={ev => setUsername(ev.target.value)
 
+                } />
             <input type="password"
+
                 placeholder="password"
                 value={password}
-                onChange={ev => setPassword(ev.target.value)} />
+                onChange={ev => setPassword(ev.target.value)
+
+                } />
             <button>Register</button>
         </form>
-    )
-
+    );
 }

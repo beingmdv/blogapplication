@@ -1,19 +1,17 @@
-export default function Post(){
+export default function Post({title, summary, cover, content, createdAt, author}) {
     return(
               <div className="post">
         <div className="images">
 
-          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Superkart.JPG" alt="" />
+          <img src={'http://127.0.0.1:4000'+cover} alt="" />
         </div>
         <div className="texts">
-          <h2>When a Burdened Heart Meets the Promises of God</h2>
+          <h2>{title}</h2>
           <p className="info">
             <a href="" className="author">Madhav Gupta</a>
-            <time dateTime="2025-10-11">2025-10-11 11:11</time>
+            <time dateTime="2025-10-11">{createdAt}</time>
           </p>
-          <p className='summary'>Most of us know what it feels like to pray from a place of desperation. Life hits hard, the world feels unstable, and our words to God sound more like pleas than prayers. But there’s a way to approach prayer that not only brings comfort but also makes an impact: praying with a burdened heart anchored in the promises of God.
-
-            —it shapes history.</p>
+          <p className='summary'>{summary}</p>
 
         </div>
       </div>
