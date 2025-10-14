@@ -109,6 +109,8 @@ app.post('/post', uploadmiddleware.single('files'), async (req, res) => {
       author: req.body.author,
       cover: coverPath
     });
+    console.log("saved coverPath:", coverPath);
+    console.log("postDoc.cover from DB:", postDoc.cover);
     res.json(postDoc);
   } catch (e) {
     console.error(e);

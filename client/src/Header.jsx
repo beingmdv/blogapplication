@@ -9,11 +9,11 @@ export default function Header() {
   useEffect(() => {
 
 
-    fetch(`${API}/profile`, 
+    fetch(`http://127.0.0.1:4000/profile`, 
       { credentials: "include" })
       .then(res => {
 
-        
+
         if (!res.ok) throw new Error("not authenticated");
         return res.json();
       })
