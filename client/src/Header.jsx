@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "./Usercontext";
-const API = "http://127.0.0.1:4000";
+const API = "https://blogapplication-ilnw.onrender.com";
 
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
@@ -9,7 +9,7 @@ export default function Header() {
   useEffect(() => {
 
 
-    fetch(`http://127.0.0.1:4000/profile`, 
+    fetch(`${API}/profile`, 
       { credentials: "include" })
       .then(res => {
 

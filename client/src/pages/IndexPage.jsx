@@ -10,7 +10,7 @@ const [posts, setPosts] = useState([]);
 
 useEffect(() => {
 
-    fetch('http://127.0.0.1:4000/post').then(response =>
+    fetch('https://blogapplication-ilnw.onrender.com/post').then(response =>
         
          { response.json().then(posts => {
             setPosts(posts);

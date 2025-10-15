@@ -1,5 +1,5 @@
 import { useState } from "react";
-const API = "http://127.0.0.1:4000";
+const API = "https://blogapplication-ilnw.onrender.com";
 
 export default function Register() {
     const [username, setUsername] = useState("");
@@ -11,6 +11,8 @@ export default function Register() {
             const res = await fetch(`${API}/register`, {
                 method: "POST",
                 body: JSON.stringify({ username, password }),
+
+                
                 headers: { "Content-Type": "application/json" }
             });
             const data = await res.json().catch(() => ({}));

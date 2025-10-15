@@ -3,7 +3,7 @@ export default function Post({title, summary, cover, content, createdAt, author}
               <div className="post">
         <div className="images">
 
-          <img src={'http://127.0.0.1:4000'+cover} alt="" />
+          <img src={'https://blogapplication-ilnw.onrender.com'+cover} alt="" />
         </div>
         <div className="texts">
           <h2>{title}</h2>

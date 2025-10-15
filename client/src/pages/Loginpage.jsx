@@ -3,11 +3,13 @@ import { Navigate } from "react-router-dom";
 
 
 import { UserContext } from "../Usercontext";
-const API = "http://127.0.0.1:4000";
+const API = "https://blogapplication-ilnw.onrender.com";
 
 export default function Loginpage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+
   const [redirect, setRedirect] = useState(false);
   const { setUserInfo } = useContext(UserContext);
 
@@ -18,6 +20,7 @@ export default function Loginpage() {
     try {
       const res = await fetch(`${API}/login`, {
         method: "POST",
+        
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
         credentials: "include"
